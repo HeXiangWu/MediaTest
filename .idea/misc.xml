@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/get_search_round.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/iv_main_play.xml" value="0.232" />
+        <entry key="app/src/main/res/drawable/my_cursor_drawable.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/search_round.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/seekbar.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/seekbar_thumb_sound.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/seekbar_volume.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/textview_round.xml" value="0.1745" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3630157470703125" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

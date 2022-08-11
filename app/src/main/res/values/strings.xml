@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MediaSessionTest</string>
+    <string name="app_version">1.0</string>
+    <string name="label_MineFragment_user_name">小电视</string>
+    <string name="label_MineFragment_user_label">一键三连</string>
+    <string name="label_MineFragment_local_download">本地/下载</string>
+    <string name="label_default_artist">歌曲名称</string>
 </resources>

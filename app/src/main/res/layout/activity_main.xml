@@ -2,17 +2,205 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_top"
+        android:layout_width="0dp"
+        android:layout_height="98dp"
+        android:background="?android:selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/iv_user"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".037"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:viewBindingIgnore="true" />
+
+        <ImageView
+            android:id="@+id/iv_edit_user"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="8dp"
+            android:src="@drawable/iv_share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".963"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:viewBindingIgnore="true" />
+
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/label_MineFragment_user_name"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/activity_main_tv_label"
+            app:layout_constraintEnd_toStartOf="@id/iv_edit_user"
+            app:layout_constraintHorizontal_bias=".00"
+            app:layout_constraintStart_toEndOf="@id/iv_user"
+            app:layout_constraintTop_toTopOf="@id/iv_user"
+            tools:viewBindingIgnore="true" />
+
+        <TextView
+            android:id="@+id/activity_main_tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/label_MineFragment_user_label"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_user"
+            app:layout_constraintEnd_toStartOf="@id/activity_main_grid_layout"
+            app:layout_constraintHorizontal_bias=".00"
+            app:layout_constraintStart_toEndOf="@id/iv_user"
+            app:layout_constraintTop_toBottomOf="@id/tv_user"
+            tools:viewBindingIgnore="true" />
+
+        <GridLayout
+            android:id="@+id/activity_main_grid_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:columnCount="1"
+            android:rowCount="2"
+            app:layout_constraintBottom_toBottomOf="@id/iv_user"
+            app:layout_constraintEnd_toStartOf="@id/iv_edit_user"
+            app:layout_constraintTop_toTopOf="@id/iv_user">
+
+            <ImageView
+                android:id="@+id/activity_main_iv_main"
+                android:layout_width="24dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/iv_main_fragment_mine_local" />
+
+            <TextView
+                android:id="@+id/activity_main_tv_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_MineFragment_local_download"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </GridLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--底部播放控制模块分割线-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_activity_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:animateLayoutChanges="true"
+        android:background="@color/white"
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/main_activity_bottom_iv_list"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:padding="5dp"
+            android:src="@drawable/iv_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".97"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".3" />
+
+        <com.example.mediasessiontest.custom.CircleProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="12dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:color_progress="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/main_activity_bottom_iv_list"
+            app:layout_constraintEnd_toStartOf="@id/main_activity_bottom_iv_list"
+            app:layout_constraintTop_toTopOf="@id/main_activity_bottom_iv_list"
+            app:max="100"
+            app:progress="20" />
+
+        <ImageView
+            android:id="@+id/main_activity_bottom_iv_play"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:padding="0dp"
+            android:src="@drawable/iv_main_play"
+            app:layout_constraintBottom_toBottomOf="@id/progress_bar"
+            app:layout_constraintEnd_toEndOf="@id/progress_bar"
+            app:layout_constraintStart_toStartOf="@id/progress_bar"
+            app:layout_constraintTop_toTopOf="@id/progress_bar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/main_activity_bottom_progress_bar_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorNightVolumeSeekBarProgress"
+        app:layout_constraintBottom_toTopOf="@id/main_activity_bottom_layout"
+        tools:viewBindingIgnore="true" />
+
+    <ImageView
+        android:id="@+id/main_activity_bottom_iv_album"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/iv_record_128"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/main_activity_iv_play_loading"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/iv_play_loading"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/main_activity_bottom_iv_album"
+        app:layout_constraintEnd_toEndOf="@id/main_activity_bottom_iv_album"
+        app:layout_constraintStart_toStartOf="@id/main_activity_bottom_iv_album"
+        app:layout_constraintTop_toTopOf="@id/main_activity_bottom_iv_album" />
+
+    <!--ellipsize: 文本超过限制则给滚动显示,字体颜色由Html文字显示-->
+    <TextView
+        android:id="@+id/main_activity_bottom_tv_song"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/label_default_artist"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/main_activity_bottom_iv_album"
+        app:layout_constraintStart_toEndOf="@id/main_activity_bottom_iv_album"
+        app:layout_constraintTop_toTopOf="@id/main_activity_bottom_layout"
+        app:layout_constraintWidth_percent=".54"
+        tools:viewBindingIgnore="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

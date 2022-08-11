@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_foot">#33A4B4E1</color>
+    <color name="color40White">#40EEEEEE</color>
+    <color name="colorNightProgressBarBackground">#99EEEEEE</color>
+    <color name="colorNightProgressBarProgress">#80000000</color>
+    <color name="color30White">#30EEEEEE</color>
+    <color name="color80Black">#80000000</color>
+    <color name="colorNightPlayerSeekBarSecond">#888</color>
+    <color name="colorNightPlayerSeekBarProgress">#bfbfbf</color>
+    <color name="colorNightVolumeSeekBarSecond">#50EEEEEE</color>
+    <color name="colorNightVolumeSeekBarProgress">#99EEEEEE</color>
+    <color name="colorNightGroundBlack">#30000000</color>
 </resources>
