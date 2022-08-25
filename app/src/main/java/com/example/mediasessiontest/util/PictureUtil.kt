@@ -147,8 +147,6 @@ object PictureUtil {
      * @param displayName 文件名
      * @param mineType 图片格式说明
      * @param compressFormat 生成的图片格式
-     * @author 12453
-     * date 2020/12/31 15:46
      */
     fun addBitmapToAlbum(application: Application,  //上下文
                          bitmap: Bitmap,  //位图对象

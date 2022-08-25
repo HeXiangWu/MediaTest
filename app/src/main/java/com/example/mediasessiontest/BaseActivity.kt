@@ -25,15 +25,13 @@ import android.view.Display
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnimationUtils
-import androidx.annotation.ColorInt
-import androidx.core.content.res.ResourcesCompat
-import com.example.mediasessiontest.viewmodel.BaseViewModel
+import com.example.mediasessiontest.viewmodel.MusicViewModel
 import java.lang.ref.SoftReference
 
 /**
  * 作用:
  */
-abstract class BaseActivity<M : BaseViewModel?> : AppCompatActivity(), View.OnApplyWindowInsetsListener {
+abstract class BaseActivity<M : MusicViewModel?> : AppCompatActivity(), View.OnApplyWindowInsetsListener {
     private var mMediaBrowser: MediaBrowserCompat? = null
     private var mControllerCallback: MediaControllerCompat.Callback? = null
     private var mSubscriptionCallback: MediaBrowserCompat.SubscriptionCallback? = null
@@ -354,14 +352,6 @@ abstract class BaseActivity<M : BaseViewModel?> : AppCompatActivity(), View.OnAp
             mediaController.transportControls.prepare()
         }
     }
-
-    /**
-     * @return 深色模式适配的颜色
-     *
-     */
-    @get:ColorInt
-    protected val viewColor: Int
-        protected get() = ResourcesCompat.getColor(resources, R.color.colorNightViewBlack, null)
 
     companion object {
         private const val TAG = "BaseActivity"

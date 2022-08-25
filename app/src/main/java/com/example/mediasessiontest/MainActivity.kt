@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaControllerCompat
+import com.example.mediasessiontest.viewmodel.MusicViewModel
 import java.util.*
 
 class MainActivity : BaseActivity<MusicViewModel>() {
 
-    private val mMainBinding: ActivityMainBinding? = null
     private val mMusicViewModel: MusicViewModel? = null
     private val mTimer: Timer? = null
     private val mIntentMusic: Intent? = null
