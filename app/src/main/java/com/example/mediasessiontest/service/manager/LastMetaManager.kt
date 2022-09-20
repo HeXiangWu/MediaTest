@@ -2,6 +2,7 @@ package com.example.mediasessiontest.service.manager
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.example.mediasessiontest.service.manager.LastMetaManager
 import android.support.v4.media.MediaMetadataCompat
 import android.util.Log
 import java.lang.ref.SoftReference
@@ -75,7 +76,8 @@ class LastMetaManager(application: Application) {
             val albumPath: String
             val setting = get()
             title = setting!!.getString("MusicTitle", "").toString()
-            artist = setting.getString("MusicArtist", "").toString().replace("&".toRegex(), "/")
+            artist = setting.getString("MusicArtist", "")
+                ?.replace("&".toRegex(), "/").toString()
             album = setting.getString("MusicAlbum", "").toString()
             path = setting.getString("MusicPath", "").toString()
             albumPath = setting.getString("MusicAlbumPath", "").toString()
