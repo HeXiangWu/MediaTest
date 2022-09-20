@@ -1,23 +1,23 @@
 package com.example.mediasessiontest.custom
 
+import android.graphics.RectF
+import com.example.mediasessiontest.custom.CircleProgressBar
+import android.content.res.TypedArray
+import com.example.mediasessiontest.R
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.RectF
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
-import com.example.mediasessiontest.R
 
 /**
  * 参考 :  https://cloud.tencent.com/developer/article/1153093
  * 作用 : 显示效果为圆形进度条，确定的实时进度跳，1000ms更新3次
  * 仿网易云音乐app主页的圆形进度条，为用户显示当前的音乐播放进度
  */
-
 class CircleProgressBar : View {
     //画笔
     private var mPaint: Paint? = null
@@ -48,7 +48,7 @@ class CircleProgressBar : View {
         Log.d(TAG, "CircleProgressBar: 2")
         if (attrs != null) {
             Log.w(TAG, "CircleProgressBar: 读取布局文件参数")
-            val ta: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar)
+            val ta = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar)
             fullColor = ta.getInt(R.styleable.CircleProgressBar_color_bg, 0x20000000)
             progressColor = ta.getInt(R.styleable.CircleProgressBar_color_progress, -0x1000000)
             strokeWidth = ta.getFloat(R.styleable.CircleProgressBar_width_stroke, 3.6f)
@@ -87,7 +87,7 @@ class CircleProgressBar : View {
         //画圆框进度条底框,radius = radius - 8 - strokeWidth
         canvas.drawCircle(mRadius, mRadius, mRadius - strokeWidth - distanceBoundary, mPaint!!)
         mPaint!!.color = progressColor
-        mRectF?.let { canvas.drawArc(it, 270f, progressOfAll, false, mPaint!!) }
+        canvas.drawArc(mRectF!!, 270f, progressOfAll, false, mPaint!!)
         mPaint!!.color = fullColor
     }
 

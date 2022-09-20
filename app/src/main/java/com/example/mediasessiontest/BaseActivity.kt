@@ -1,22 +1,26 @@
 package com.example.mediasessiontest
 
-import com.example.mediasessiontest.util.ImmersiveStatusBarUtil.transparentBar
+import com.example.mediasessiontest.viewmodel.MusicViewModel
 import androidx.appcompat.app.AppCompatActivity
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.view.animation.Animation
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import com.example.mediasessiontest.util.ImmersiveStatusBarUtil
+import com.example.mediasessiontest.BaseActivity
 import android.media.AudioManager
 import android.view.WindowInsets
 import android.content.ComponentName
 import com.example.mediasessiontest.service.MusicService
+import com.example.mediasessiontest.BaseActivity.MyMediaBrowserConnectionCallback
+import com.example.mediasessiontest.R
 import android.view.animation.LinearInterpolator
+import android.support.v4.media.session.MediaSessionCompat
 import android.content.Intent
 import android.support.v4.media.session.PlaybackStateCompat
 import android.widget.Toast
 import android.os.Build
-import android.os.RemoteException
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
@@ -25,7 +29,9 @@ import android.view.Display
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnimationUtils
-import com.example.mediasessiontest.viewmodel.MusicViewModel
+import androidx.annotation.ColorInt
+import androidx.annotation.RequiresApi
+import androidx.core.content.res.ResourcesCompat
 import java.lang.ref.SoftReference
 
 /**
@@ -42,9 +48,13 @@ abstract class BaseActivity<M : MusicViewModel?> : AppCompatActivity(), View.OnA
     private var mRecordAnimator: ObjectAnimator? = null
 
     //设备参数
+    @JvmField
     protected var mRefreshRateMax = 0
+    @JvmField
     protected var mPhoneWidth = 0
+    @JvmField
     protected var mPhoneHeight = 0
+    @JvmField
     protected var isPad = false
     protected var backToDesktop = false
     protected var isLifePauseAnimator = false
@@ -52,7 +62,7 @@ abstract class BaseActivity<M : MusicViewModel?> : AppCompatActivity(), View.OnA
     protected abstract val controllerCallback: MediaControllerCompat.Callback?
     protected abstract val subscriptionCallback: MediaBrowserCompat.SubscriptionCallback?
     override fun onCreate(savedInstanceState: Bundle?) {
-        transparentBar(this, false)
+        ImmersiveStatusBarUtil.transparentBar(this, false)
         super.onCreate(savedInstanceState)
         HighHzAdaptation()
         initMediaBrowser()
@@ -193,11 +203,7 @@ abstract class BaseActivity<M : MusicViewModel?> : AppCompatActivity(), View.OnA
 
             // 初始化MediaControllerCompat
             var mediaController: MediaControllerCompat? = null
-            try {
-                mediaController = MediaControllerCompat(this@BaseActivity, token)
-            } catch (e: RemoteException) {
-                e.printStackTrace()
-            }
+            mediaController = MediaControllerCompat(this@BaseActivity, token)
             if (mediaController == null) {
                 return
             }
@@ -327,13 +333,12 @@ abstract class BaseActivity<M : MusicViewModel?> : AppCompatActivity(), View.OnA
             resources.displayMetrics).toInt()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     protected fun activityOnChildrenLoad(m: M, view: View,
                                          children: List<MediaBrowserCompat.MediaItem>) {
         val mediaController = MediaControllerCompat.getMediaController(this)
         m!!.setMediaControllerCompat(mediaController)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            m.SyncMusicInformation()
-        }
+        m.SyncMusicInformation()
 
         //同步播放动画
         val playbackState = mediaController.playbackState
@@ -352,6 +357,14 @@ abstract class BaseActivity<M : MusicViewModel?> : AppCompatActivity(), View.OnA
             mediaController.transportControls.prepare()
         }
     }
+
+    /**
+     * @return 深色模式适配的颜色
+     *
+     */
+    @get:ColorInt
+    protected val viewColor: Int
+        protected get() = ResourcesCompat.getColor(resources, R.color.colorNightViewBlack, null)
 
     companion object {
         private const val TAG = "BaseActivity"

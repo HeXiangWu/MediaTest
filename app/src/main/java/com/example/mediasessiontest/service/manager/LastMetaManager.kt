@@ -75,7 +75,8 @@ class LastMetaManager(application: Application) {
             val albumPath: String
             val setting = get()
             title = setting!!.getString("MusicTitle", "").toString()
-            artist = setting.getString("MusicArtist", "").toString().replace("&".toRegex(), "/")
+            artist = setting.getString("MusicArtist", "")
+                ?.replace("&".toRegex(), "/").toString()
             album = setting.getString("MusicAlbum", "").toString()
             path = setting.getString("MusicPath", "").toString()
             albumPath = setting.getString("MusicAlbumPath", "").toString()
@@ -99,7 +100,8 @@ class LastMetaManager(application: Application) {
              mCurrentFileMusicArtist = settings.getString("FileMusicArtist","");//默认为顺序播放
              isNotificationMediaStyle = settings.getBoolean("NotificationStyle",true);
              if(!UsersGuidePermissionsUtil.checkCanDrawOverlays(this.getApplicationContext()))
-                 isLrcViewShow = settings.getBoolean("LrcShow",false);*/return MediaMetadataCompat.Builder()
+                 isLrcViewShow = settings.getBoolean("LrcShow",false);*/
+            return MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, title.replace(" ".toRegex(), "_"))
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, album)

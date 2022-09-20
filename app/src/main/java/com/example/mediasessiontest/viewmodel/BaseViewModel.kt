@@ -1,16 +1,13 @@
 package com.example.mediasessiontest.viewmodel
 
 import android.app.Application
-import com.example.mediasessiontest.util.PictureUtil.createColorDrawable
-import com.example.mediasessiontest.util.PictureUtil.createCircleDrawable
-import com.example.mediasessiontest.util.PictureUtil.createCircleDrawableBig
-import com.example.mediasessiontest.util.PictureUtil.createBlurDrawable
 import androidx.lifecycle.AndroidViewModel
 import androidx.databinding.PropertyChangeRegistry
 import android.support.v4.media.session.MediaControllerCompat
 import androidx.databinding.Observable.OnPropertyChangedCallback
 import android.util.TypedValue
 import androidx.core.graphics.drawable.RoundedBitmapDrawable
+import com.example.mediasessiontest.util.PictureUtil
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.LayerDrawable
@@ -91,26 +88,26 @@ abstract class BaseViewModel(application: Application?) : AndroidViewModel(appli
     * 已用Shape资源文件代替
     * */
     @Deprecated("")
-    protected fun getRecordBg(application: Application?): RoundedBitmapDrawable? {
-        return createColorDrawable(application,
+    protected fun getRecordBg(application: Application?): RoundedBitmapDrawable {
+        return PictureUtil.createColorDrawable(application,
             Color.argb(18, 255, 255, 255), 400, 400)
     }
 
     //绘制小唱片
-    protected fun getRecord(bitmap: Bitmap?, application: Application): LayerDrawable? {
-        return createCircleDrawable(application, bitmap,
+    protected fun getRecord(bitmap: Bitmap?, application: Application): LayerDrawable {
+        return PictureUtil.createCircleDrawable(application, bitmap,
             dpToPx(42, application).toFloat(), 100, 1,
             Color.argb(32, 255, 255, 255))
     }
 
     //绘制SongLrc页面的大唱片
-    protected fun getRecordBig(bitmap: Bitmap?, application: Application?, size: Int): LayerDrawable? {
-        return createCircleDrawableBig(application, bitmap, 400, size)
+    protected fun getRecordBig(bitmap: Bitmap?, application: Application?, size: Int): LayerDrawable {
+        return PictureUtil.createCircleDrawableBig(application, bitmap, 400, size)
     }
 
     //绘制高斯模糊背景
-    protected fun getBlurDrawable(bitmap: Bitmap?, application: Application?): LayerDrawable? {
-        return createBlurDrawable(application, 1080f, 1920, 20f, bitmap)
+    protected fun getBlurDrawable(bitmap: Bitmap?, application: Application?): LayerDrawable {
+        return PictureUtil.createBlurDrawable(application, 1080f, 1920, 20f, bitmap)
     }
 
     protected fun <T> getSoftReference(obj: T): T? {
@@ -119,7 +116,7 @@ abstract class BaseViewModel(application: Application?) : AndroidViewModel(appli
 
     private val customAction: PlaybackStateCompat.CustomAction
         private get() = PlaybackStateCompat.CustomAction.Builder(
-            MediaPlayerManager.CUSTOM_ACTION_PLAYBACK_MODE_CHANGE,
+            MediaPlayerManager.DYQL_CUSTOM_ACTION_PLAYBACK_MODE_CHANGE,
             "playback_mode_change",
             R.drawable.iv_playback_mode_order).build()
 }

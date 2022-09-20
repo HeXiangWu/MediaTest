@@ -23,8 +23,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_9
+        targetCompatibility JavaVersion.VERSION_1_9
+    }
+    sourceSets {
+        main{
+            res.srcDirs += [
+                    'src/main/res/layout',
+                    'src/main/res/ui_player_control',
+                    'src/main/res/ui_song_lrc',
+                    'src/main/res'
+            ]
+        }
+    }
+    dataBinding {
+        enabled = true
     }
     kotlinOptions {
         jvmTarget = '1.8'

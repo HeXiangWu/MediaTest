@@ -1,9 +1,12 @@
 package com.example.mediasessiontest.model
 
+import com.example.mediasessiontest.model.BaseModel.OnMusicListener
 import android.content.ContentResolver
 import android.content.res.Resources
 import com.example.mediasessiontest.bean.MusicBean
+import com.example.mediasessiontest.model.BaseModel.OnMusicMetadataListener
 import android.support.v4.media.MediaMetadataCompat
+import com.example.mediasessiontest.model.BaseModel.OnLoadPictureListener
 import android.graphics.Bitmap
 import java.lang.ref.WeakReference
 import java.util.LinkedHashMap

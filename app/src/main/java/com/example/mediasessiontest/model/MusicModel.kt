@@ -1,10 +1,14 @@
 package com.example.mediasessiontest.model
 
+import com.example.mediasessiontest.model.BaseModel
+import androidx.annotation.RequiresApi
+import android.os.Build
 import com.example.mediasessiontest.model.BaseModel.OnMusicListener
 import android.content.ContentResolver
 import com.example.mediasessiontest.model.BaseModel.OnMusicMetadataListener
 import com.example.mediasessiontest.model.BaseModel.OnLoadPictureListener
 import android.graphics.Bitmap
+import com.example.mediasessiontest.util.PictureUtil
 import com.example.mediasessiontest.R
 import android.annotation.SuppressLint
 import android.content.res.Resources
@@ -15,11 +19,8 @@ import android.provider.MediaStore
 import android.support.v4.media.MediaMetadataCompat
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
-import android.os.Build
 import android.text.TextUtils
 import android.util.Log
-import androidx.annotation.RequiresApi
-import com.example.mediasessiontest.util.PictureUtil
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileInputStream
@@ -33,12 +34,12 @@ import java.util.LinkedHashMap
  * 作用:
  */
 class MusicModel : BaseModel {
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     override fun getLocalMusic(onMusicListener: OnMusicListener?, resolver: ContentResolver?) {
         onMusicListener!!.OnComplete(getLocalMusic(resolver))
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     override fun getLocalMusicMetadata(onMusicListener: OnMusicMetadataListener?, resolver: ContentResolver?) {
         onMusicListener!!.OnComplete(getLocalMusicMetadata(resolver))
     }
@@ -50,11 +51,14 @@ class MusicModel : BaseModel {
     }
 
     /**
+     * 项目 Bilibili@喜闻人籁[MVVM|MediaSession]音频应用示例
      * 描述 获取本地音乐列表
      * @param resolver 内容访问器，这个类提供对内容模型的应用程序访问。
      * @return List<MusicBean>类型的本地音乐列表集合
+     * @author 喜闻人籁
+     * time 2021/11/07 21:01
     </MusicBean> */
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("Range")
     private fun getLocalMusic(resolver: ContentResolver?): List<MusicBean?>? {
         Log.e(TAG, "getLocalMusic: " + (resolver == null))
@@ -89,9 +93,14 @@ class MusicModel : BaseModel {
     }
 
     /**
+     * 项目 Bilibili@喜闻人籁[MVVM|MediaSession]音频应用示例
+     * 描述 获取本地音乐列表
      * @param resolver 内容访问器，这个类提供对内容模型的应用程序访问。
+     * @return LinkedHashMap<String></String>, MediaMetadataCompat>类型的本地音乐列表集合
+     * @author 喜闻人籁
+     * time 2021/11/10 20:11
      */
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("Range")
     private fun getLocalMusicMetadata(resolver: ContentResolver?): LinkedHashMap<String?, MediaMetadataCompat?>? {
         //Log.e(TAG, "getLocalMusicMetadata: "+(resolver == null));
@@ -144,6 +153,9 @@ class MusicModel : BaseModel {
     /**
      * description 返回一个本地音乐文件的专辑bitmap图片
      * @param Path 给定当前点击item音乐的外部存储路径，非content
+     * @return Bitmap类型专辑图片
+     * @author 喜闻人籁
+     * time 2020/12/18 12:22
      */
     private fun getAlbumBitmap(Path: String?): Bitmap? {
         if (Path!!.isEmpty()) return null //返回默认的专辑封面
