@@ -2,6 +2,7 @@ package com.example.mediasessiontest.service.manager
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.example.mediasessiontest.service.manager.LastMetaManager
 import android.support.v4.media.MediaMetadataCompat
 import android.util.Log
 import java.lang.ref.SoftReference
