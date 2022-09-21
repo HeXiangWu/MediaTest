@@ -165,7 +165,6 @@ abstract class BaseBindingAdapter<M, B : ViewDataBinding?>(protected var context
          * =distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-3.no_search_link
          * 过程分析：https://blog.csdn.net/zhuhai__yizhi/article/details/52181697 */
         @JvmStatic
-        @BindingAdapter("android:src")
         fun setSrc(view: ImageView, resId: Int) {
             //Log.d(TAG, "setSrc: ");
             view.setImageResource(resId)
